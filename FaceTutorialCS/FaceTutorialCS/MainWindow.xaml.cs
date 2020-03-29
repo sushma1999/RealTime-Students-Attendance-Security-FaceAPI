@@ -19,9 +19,9 @@ namespace FaceTutorial
     {
         // <snippet_mainwindow_fields>
         // Add your Face subscription key to your environment variables.
-        private const string subscriptionKey = Environment.GetEnvironmentVariable("FACE_SUBSCRIPTION_KEY");
+        private const string subscriptionKey = "e6ca1f0254c9427394507c3cb5c6bd18";
         // Add your Face endpoint to your environment variables.
-        private const string faceEndpoint = Environment.GetEnvironmentVariable("FACE_ENDPOINT");
+        private const string faceEndpoint = "https://sushmafacedetectionofstudents.cognitiveservices.azure.com/";
 
         private readonly IFaceClient faceClient = new FaceClient(
             new ApiKeyServiceClientCredentials(subscriptionKey),
@@ -204,7 +204,7 @@ namespace FaceTutorial
                 {
                     FaceAttributeType.Gender, FaceAttributeType.Age,
                     FaceAttributeType.Smile, FaceAttributeType.Emotion,
-                    FaceAttributeType.Glasses, FaceAttributeType.Hair
+                    FaceAttributeType.Glasses, FaceAttributeType.Hair, FaceAttributeType.FacialHair
                 };
 
             // Call the Face API.
@@ -272,6 +272,8 @@ namespace FaceTutorial
 
             // Add glasses.
             sb.Append(face.FaceAttributes.Glasses);
+            sb.Append("Facial Hair: Beard ");
+            sb.Append(face.FaceAttributes.FacialHair.Beard.ToString());
             sb.Append(", ");
 
             // Add hair.
